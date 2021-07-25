@@ -1,0 +1,1 @@
+{"version":3,"sources":["uni-app:///main.js"],"names":["createPage","Page"],"mappings":";;;;;;;;;;kDAAA;AACA;AACA,sO;AACAA,UAAU,CAACC,eAAD,CAAV,C","file":"pages/RealEstateBook/RealEstateBook/detail.js","sourcesContent":["import 'uni-pages';\nimport Vue from 'vue'\nimport Page from './pages/RealEstateBook/RealEstateBook/detail.vue'\ncreatePage(Page)"],"sourceRoot":""}

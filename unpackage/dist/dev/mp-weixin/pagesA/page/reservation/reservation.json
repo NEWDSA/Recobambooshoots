@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "預約睇樓",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "uni-calendar": "/components/uni-calendar/uni-calendar"
+  }
+}

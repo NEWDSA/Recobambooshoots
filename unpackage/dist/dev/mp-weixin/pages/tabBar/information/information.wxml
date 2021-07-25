@@ -1,1 +1,1 @@
-<view>555</view>
+<view><view data-event-opts="{{[['tap',[['login',['$event']]]]]}}" bindtap="__e">2222</view></view>

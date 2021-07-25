@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "立即报名",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "select-box": "/components/select-box/select-box"
+  }
+}

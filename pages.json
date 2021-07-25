@@ -1,57 +1,233 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/tabBar/Homepage/Homepage",
+			"path": "pages/tabBar/Home/Home", //主页
 			"style": {
 				"navigationBarTitleText": "",
-				"enablePullDownRefresh": false
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
 			}
-		
-		},{
-			"path": "pages/tabBar/activity/activity",
+
+		}, {
+			"path": "pages/tabBar/activity/activity", //活动
 			"style": {
 				"navigationBarTitleText": "活動報名",
 				"enablePullDownRefresh": true
 			}
 
-		}, {
-			"path": "pages/tabBar/News/News",
+		},
+		{
+			"path": "pages/tabBar/News/News", //资讯
 			"style": {
 				"navigationBarTitleText": "資訊",
 				"enablePullDownRefresh": true
 			}
-
-		}, {
+		},
+		{
 			"path": "pages/tabBar/information/information",
 			"style": {
 				"navigationBarTitleText": "消息列表",
 				"enablePullDownRefresh": false
 			}
 
-		}, {
-			"path": "pages/tabBar/mine/mine",
+		},
+		{
+			"path": "pages/tabBar/mine/mine", //我的
 			"style": {
 				"navigationBarTitleText": "",
 				"enablePullDownRefresh": false
 			}
 
 		}
-        ,{
-            "path" : "pages/detail/detail",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-    ],
+	],
+	// 新建分包
+	"subPackages": [{
+		"root": "pagesA",
+		"pages": [ // 开始分包
+			{
+				"path": "page/newsdetail/newsdetail",
+				"style": {
+					"navigationBarTitleText": "资讯详情",
+					"enablePullDownRefresh": false
+				}
+			},
+			{
+				"path": "page/siginup/siginup",
+				"style": {
+					"navigationBarTitleText": "立即报名",
+					"enablePullDownRefresh": false
+				}
+			}, {
+				"path": "page/GreatBay/GreatBay",
+				"style": {
+					"navigationBarTitleText": "中原大灣區指數",
+					"enablePullDownRefresh": false
+				}
+
+			}, {
+				"path": "page/BuyHouse/BuyHouse",
+				"style": {
+					"navigationBarTitleText": "",
+					"enablePullDownRefresh": false,
+					"navigationStyle": "custom"
+				}
+
+			}, {
+				"path": "page/buyingtools/buyingtools",
+				"style": {
+					"navigationBarTitleText": "",
+					"enablePullDownRefresh": false
+				}
+
+			}, {
+				"path": "page/BuyHouse/detail",
+				"style": {
+					"navigationBarTitleText": "楼盘详情",
+					"enablePullDownRefresh": false
+				}
+
+			}, {
+				"path": "page/OnlineSale/OnlineSale",
+				"style": {
+					"navigationBarTitleText": "網上放盤",
+					"enablePullDownRefresh": false
+				}
+
+			}, {
+				"path": "page/ZhongyuanDynamic/ZhongyuanDynamic",
+				"style": {
+					"navigationBarTitleText": "",
+					"enablePullDownRefresh": false
+				}
+
+			}, {
+				"path": "page/InverstmentTips/InverstmentTips",
+				"style": {
+					"navigationBarTitleText": "",
+					"enablePullDownRefresh": false
+				}
+
+			}, {
+				"path": "page/focusNews/focusNews",
+				"style": {
+					"navigationBarTitleText": "",
+					"enablePullDownRefresh": false,
+					"navigationStyle": "custom"
+				}
+
+			}, {
+				"path": "page/BuyingRentHouse/BuyingRentHouse",
+				"style": {
+					"navigationBarTitleText": "",
+					"enablePullDownRefresh": false
+				}
+
+			}, {
+				"path": "page/setup/setup",
+				"style": {
+					"navigationBarTitleText": "",
+					"enablePullDownRefresh": false
+				}
+
+			}, {
+				"path": "page/updatePhone/updatePhone",
+				"style": {
+					"navigationBarTitleText": "",
+					"enablePullDownRefresh": false
+				}
+
+			}, {
+				"path": "page/web-view/web-view",
+				"style": {
+					"navigationBarTitleText": "",
+					"enablePullDownRefresh": false
+				}
+
+			}, {
+				"path": "page/reservation/reservation",
+				"style": {
+					"navigationBarTitleText": "預約睇樓",
+					"enablePullDownRefresh": false
+				}
+
+			}, {
+				"path": "page/appointment/appointment",
+				"style": {
+					"navigationBarTitleText": "選擇約睇樓盤",
+					"enablePullDownRefresh": false
+				}
+
+			}, {
+				"path": "page/focusNews/detail/detail",
+				"style": {
+					"navigationBarTitleText": "",
+					"enablePullDownRefresh": false
+				}
+
+			}, {
+				"path": "page/RealEstateBook/RealEstateBook",
+				"style": {
+					"navigationBarTitleText": "樓盤天書",
+					"enablePullDownRefresh": true,
+					"navigationStyle": "custom"
+
+				}
+
+			},
+			{
+				"path": "page/RealEstateBook/detail",
+				"style": {
+					"navigationBarTitleText": "",
+					"enablePullDownRefresh": false,
+					"navigationStyle": "custom"
+				}
+			}, {
+				"path": "page/login/login",
+				"style": {
+					"navigationBarTitleText": "",
+					"enablePullDownRefresh": false
+				}
+
+			}, {
+				"path": "unionpage/unionpage",
+				"style": {
+					"navigationBarTitleText": "分行网络",
+					"enablePullDownRefresh": false
+				}
+
+			}
+		    ,{
+                    "path" : "JoinCentaline/JoinCentaline",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                },
+				{
+					"path" : "page/detail/detail",
+					"style":{
+						"navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+					}
+				}
+            ]
+		// end 分包结束
+
+
+
+	}],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"backgroundColor": "#F8F8F8",
+		"app-plus": {
+			"scrollIndicator": "none"
+		}
 	},
+	// 導航菜單
 	"tabBar": {
 		"color": "#7A7E83", // tab 上的文字默认颜色
 		"selectedColor": "#007AFF", // tab 上的文字选中时的颜色
@@ -59,29 +235,30 @@
 		"backgroundColor": "#F8F8F8", // 	tab 的背景色
 		"list": [{
 			"pagePath": "pages/tabBar/activity/activity",
-			"iconPath": "static/tabs_activity_unselected_icon@2x.png",
-			"selectedIconPath": "static/tabs_activity_selected_icon@2x.png",
+			"iconPath": "pagesA/static/tabs_activity_unselected_icon@2x.png",
+			"selectedIconPath": "pagesA/static/tabs_activity_selected_icon@2x.png",
 			"text": "活動"
 		}, {
 			"pagePath": "pages/tabBar/News/News",
-			"iconPath": "static/tabs_information_unselected_icon@2x.png",
-			"selectedIconPath": "static/tabs_information_selected_icon@2x.png",
+			"iconPath": "pagesA/static/tabs_information_unselected_icon@2x.png",
+			"selectedIconPath": "pagesA/static/tabs_information_selected_icon@2x.png",
 			"text": "資訊"
 		}, {
-			"pagePath": "pages/tabBar/Homepage/Homepage",
-			"iconPath": "static/tabs_home_icon@2x.png",
-			"selectedIconPath": "static/tabs_home_selected_icon@2x.png",
+
+			"pagePath": "pages/tabBar/Home/Home",
+			"iconPath": "pagesA/static/tabs_home_icon@2x.png",
+			"selectedIconPath": "pagesA/static/tabs_home_selected_icon@2x.png",
 			"text": "主頁"
 
 		}, {
 			"pagePath": "pages/tabBar/information/information",
-			"iconPath": "static/tabs_news_unselected_icon@2x.png",
-			"selectedIconPath": "static/tabs_news_selected_icon@2x.png",
+			"iconPath": "pagesA/static/tabs_news_unselected_icon@2x.png",
+			"selectedIconPath": "pagesA/static/tabs_news_selected_icon@2x.png",
 			"text": "信息"
 		}, {
 			"pagePath": "pages/tabBar/mine/mine",
-			"iconPath": "static/tabs_mine_unselected_icon@2x.png",
-			"selectedIconPath": "static/tabs_mine_selected_icon@2x.png",
+			"iconPath": "pagesA/static/tabs_mine_unselected_icon@2x.png",
+			"selectedIconPath": "pagesA/static/tabs_mine_selected_icon@2x.png",
 			"text": "我的"
 		}]
 	}

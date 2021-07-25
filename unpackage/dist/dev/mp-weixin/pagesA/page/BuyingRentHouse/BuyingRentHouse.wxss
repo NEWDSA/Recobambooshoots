@@ -1,0 +1,149 @@
+@charset "UTF-8";
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.contianer.data-v-40d471bb {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.contianer .scroll-h.data-v-40d471bb {
+  position: relative;
+  width: 750rpx;
+  height: 70rpx;
+}
+.contianer .scroll-h .tab-items.data-v-40d471bb {
+  width: 200rpx;
+  display: inline-block;
+  margin: 10rpx 20rpx;
+  font-size: 25rpx;
+  line-height: 60rpx;
+  text-align: center;
+  color: #808080;
+  position: relative;
+}
+.contianer .scroll-h .tab-items.data-v-40d471bb:after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-bottom: 4rpx solid #aa0000;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+.contianer .scroll-h .current.data-v-40d471bb {
+  color: #aa0000;
+}
+.contianer .scroll-h .current.data-v-40d471bb:after {
+  width: 13%;
+}
+.contianer .search.data-v-40d471bb {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  width: 80%;
+  height: 70rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-color: #f7f7f7;
+  -webkit-border-radius: 20rpx;
+          border-radius: 20rpx;
+}
+.contianer .search.data-v-40d471bb .search_word {
+  font-size: 25rpx;
+  color: #c1c1c6;
+}
+.contianer .search uni-icons.data-v-40d471bb {
+  margin-left: 20rpx;
+}
+.contianer .search input.data-v-40d471bb {
+  width: 100%;
+  height: 100%;
+}
+.contianer .cancel.data-v-40d471bb {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding-left: 20rpx;
+  color: #555555;
+}
+.contianer .content.data-v-40d471bb {
+  width: 100%;
+  height: calc(100% - 160rpx);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.contianer .content .history.data-v-40d471bb {
+  position: relative;
+  top: 50rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+.contianer .content .history text.data-v-40d471bb {
+  color: #8b8b8b;
+}
+.contianer .content .history image.data-v-40d471bb {
+  width: 20rpx;
+  height: 30rpx;
+}
+.contianer .content .nodate.data-v-40d471bb {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  width: 100%;
+  height: calc(100% - 50rpx);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.contianer .content .nodate image.data-v-40d471bb {
+  width: 150rpx;
+  height: 120rpx;
+}
+

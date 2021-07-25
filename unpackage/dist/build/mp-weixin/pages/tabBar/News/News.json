@@ -1,7 +1,7 @@
 {
   "navigationBarTitleText": "資訊",
-  "enablePullDownRefresh": false,
+  "enablePullDownRefresh": true,
   "usingComponents": {
-    "mix-load-more": "/components/mix-load-more/mix-load-more"
+    "uni-load-more": "/components/uni-load-more/uni-load-more"
   }
 }

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "樓盤天書",
+  "enablePullDownRefresh": true,
+  "navigationStyle": "custom",
+  "usingComponents": {}
+}

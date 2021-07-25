@@ -1,0 +1,1 @@
+<view class="container data-v-3f054ef7"><view class="data-v-3f054ef7">手機快捷登錄</view><view class="data-v-3f054ef7">本APP無需註冊直接登錄使用</view><view data-event-opts="{{[['tap',[['login',['$event']]]]]}}" bindtap="__e" class="data-v-3f054ef7">22222</view></view>

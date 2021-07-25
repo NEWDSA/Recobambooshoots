@@ -1,11 +1,33 @@
 {
   "pages": [
-    "pages/tabBar/Homepage/Homepage",
+    "pages/tabBar/Home/Home",
     "pages/tabBar/activity/activity",
     "pages/tabBar/News/News",
     "pages/tabBar/information/information",
     "pages/tabBar/mine/mine",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/index/index",
+    "pages/newsdetail/newsdetail",
+    "pages/siginup/siginup",
+    "pages/GreatBay/GreatBay",
+    "pages/BuyHouse/BuyHouse",
+    "pages/buyingtools/buyingtools",
+    "pages/BuyHouse/detail",
+    "pages/tabBar/login/login",
+    "pages/OnlineSale/OnlineSale",
+    "pages/ZhongyuanDynamic/ZhongyuanDynamic",
+    "pages/InverstmentTips/InverstmentTips",
+    "pages/focusNews/focusNews",
+    "pages/BuyingRentHouse/BuyingRentHouse",
+    "pages/setup/setup",
+    "pages/updatePhone/updatePhone",
+    "pages/web-view/web-view",
+    "pages/reservation/reservation",
+    "pages/appointment/appointment",
+    "pages/focusNews/detail/detail",
+    "pages/RealEstateBook/RealEstateBook",
+    "pages/RealEstateBook/detail",
+    "pages/login/login"
   ],
   "subPackages": [],
   "window": {
@@ -33,7 +55,7 @@
         "text": "資訊"
       },
       {
-        "pagePath": "pages/tabBar/Homepage/Homepage",
+        "pagePath": "pages/tabBar/Home/Home",
         "iconPath": "static/tabs_home_icon@2x.png",
         "selectedIconPath": "static/tabs_home_selected_icon@2x.png",
         "text": "主頁"
@@ -52,5 +74,7 @@
       }
     ]
   },
-  "usingComponents": {}
+  "usingComponents": {
+    "nav-bar": "/components/zhouWei-navBar/index"
+  }
 }

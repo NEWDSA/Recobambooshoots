@@ -1,13 +1,41 @@
 {
   "pages": [
-    "pages/tabBar/Homepage/Homepage",
+    "pages/tabBar/Home/Home",
     "pages/tabBar/activity/activity",
     "pages/tabBar/News/News",
     "pages/tabBar/information/information",
-    "pages/tabBar/mine/mine",
-    "pages/detail/detail"
+    "pages/tabBar/mine/mine"
   ],
-  "subPackages": [],
+  "subPackages": [
+    {
+      "root": "pagesA",
+      "pages": [
+        "page/newsdetail/newsdetail",
+        "page/siginup/siginup",
+        "page/GreatBay/GreatBay",
+        "page/BuyHouse/BuyHouse",
+        "page/buyingtools/buyingtools",
+        "page/BuyHouse/detail",
+        "page/OnlineSale/OnlineSale",
+        "page/ZhongyuanDynamic/ZhongyuanDynamic",
+        "page/InverstmentTips/InverstmentTips",
+        "page/focusNews/focusNews",
+        "page/BuyingRentHouse/BuyingRentHouse",
+        "page/setup/setup",
+        "page/updatePhone/updatePhone",
+        "page/web-view/web-view",
+        "page/reservation/reservation",
+        "page/appointment/appointment",
+        "page/focusNews/detail/detail",
+        "page/RealEstateBook/RealEstateBook",
+        "page/RealEstateBook/detail",
+        "page/login/login",
+        "unionpage/unionpage",
+        "JoinCentaline/JoinCentaline",
+        "page/detail/detail"
+      ]
+    }
+  ],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",
@@ -22,35 +50,37 @@
     "list": [
       {
         "pagePath": "pages/tabBar/activity/activity",
-        "iconPath": "static/tabs_activity_unselected_icon@2x.png",
-        "selectedIconPath": "static/tabs_activity_selected_icon@2x.png",
+        "iconPath": "pagesA/static/tabs_activity_unselected_icon@2x.png",
+        "selectedIconPath": "pagesA/static/tabs_activity_selected_icon@2x.png",
         "text": "活動"
       },
       {
         "pagePath": "pages/tabBar/News/News",
-        "iconPath": "static/tabs_information_unselected_icon@2x.png",
-        "selectedIconPath": "static/tabs_information_selected_icon@2x.png",
+        "iconPath": "pagesA/static/tabs_information_unselected_icon@2x.png",
+        "selectedIconPath": "pagesA/static/tabs_information_selected_icon@2x.png",
         "text": "資訊"
       },
       {
-        "pagePath": "pages/tabBar/Homepage/Homepage",
-        "iconPath": "static/tabs_home_icon@2x.png",
-        "selectedIconPath": "static/tabs_home_selected_icon@2x.png",
+        "pagePath": "pages/tabBar/Home/Home",
+        "iconPath": "pagesA/static/tabs_home_icon@2x.png",
+        "selectedIconPath": "pagesA/static/tabs_home_selected_icon@2x.png",
         "text": "主頁"
       },
       {
         "pagePath": "pages/tabBar/information/information",
-        "iconPath": "static/tabs_news_unselected_icon@2x.png",
-        "selectedIconPath": "static/tabs_news_selected_icon@2x.png",
+        "iconPath": "pagesA/static/tabs_news_unselected_icon@2x.png",
+        "selectedIconPath": "pagesA/static/tabs_news_selected_icon@2x.png",
         "text": "信息"
       },
       {
         "pagePath": "pages/tabBar/mine/mine",
-        "iconPath": "static/tabs_mine_unselected_icon@2x.png",
-        "selectedIconPath": "static/tabs_mine_selected_icon@2x.png",
+        "iconPath": "pagesA/static/tabs_mine_unselected_icon@2x.png",
+        "selectedIconPath": "pagesA/static/tabs_mine_selected_icon@2x.png",
         "text": "我的"
       }
     ]
   },
-  "usingComponents": {}
+  "usingComponents": {
+    "nav-bar": "/components/zhouWei-navBar/index"
+  }
 }

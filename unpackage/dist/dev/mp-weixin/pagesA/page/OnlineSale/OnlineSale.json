@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "網上放盤",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "dropdown": "/components/dropdown/dropdown",
+    "e-modal": "/components/e-modal/e-modal"
+  }
+}

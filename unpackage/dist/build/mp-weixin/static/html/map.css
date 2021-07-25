@@ -1,0 +1,51 @@
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+#mapPage {
+	height: 100%;
+	position: relative;
+}
+
+#container {
+	height: 100%;
+}
+
+.conter {
+	width: 30%;
+	height: 60rpx;
+	line-height: 60px;
+	/* 毛玻璃效果 */
+	background: rgba(255, 255, 255, 0.20);
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	backdrop-filter: blur(4.5px);
+	-webkit-backdrop-filter: blur(4.5px);
+	border-radius: 10px;
+	border: 1px solid rgba(255, 255, 255, 0.18);
+	position: absolute;
+	right: 6px;
+	text-align: center;
+	font-weight: bold;
+	z-index: 1000;
+}
+
+.normal {
+	top: 40rpx;
+	color: #19be6b;
+}
+
+.warn {
+	top: 110px;
+	color: #ff9900;
+}
+
+.error {
+	top: 180px;
+	color: #fa3534;
+}

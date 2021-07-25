@@ -1,197 +1,212 @@
 <template>
 	<view class="content">
-		<scroll-view class="scroll-h" :scroll-x="true" :scroll-into-view="scrollInfo">
-			<view v-for="(tab,index) in tabBars" :key="tab.id" class="tab-items" :class="{current: index === tabCurrentIndex}"
-			 :id="tab.id" :data-current="index" @click="changeTab(index)">
-				<text>{{tab.name}}</text>
-			</view>
-		</scroll-view>
-		<!-- 内容显示-->
-		<swiper class="cont_area" id="swiper" :duration="300" :current="tabCurrentIndex" @change="changeTab">
+		<!-- tab選項卡 -->
+		<view class="tab">
+			<scroll-view class="scroll-h" :scroll-x="true" :scroll-left="scrollLeft">
+				<view v-for="(tab, index) in tabBars" :key="tab.id" class="tab-items" :class="{ current: index == tabCurrentIndex }"
+				 :id="tab.id" :data-current="index" @click="changeTab">
+					<text>{{ tab.name }}</text>
+				</view>
+			</scroll-view>
+		</view>
+		<!-- 輪播切換內容 -->
+		<swiper class="cont_area" id="swiper" :duration="300" :current="tabCurrentIndex" @change="onchangeTab">
 			<swiper-item v-for="tabItem in newsList" :key="tabItem.id">
-				<scroll-view  show-scrollbar="false" :scroll-y="enableScroll" @scrolltoupper="loadMore">
-					<view v-for="(item, index) in newsList" :key="index" class="l_text">
-						<text class="l-text">{{item.Title}}</text>
-						<text>{{item.ModifiedAt}}</text> <!-- 格式化时间-->
+				<scroll-view scroll-y @scrolltolower="loadmore" class="panel-scroll-box">
+					<view v-for="(item, index) in newsList" :key="index" class="l_text" @click="getNewsdetail(item)">
+						<!-- 标题 -->
+						<text class="l-text">{{ item.Title }}</text>
+						<!-- 编辑日期 -->
+						<text class="l-modify">{{ item.ModifiedAt | formatDate }}</text>
 					</view>
+					<uni-load-more :status="loadStatus"></uni-load-more>
 				</scroll-view>
 			</swiper-item>
 		</swiper>
-		<uni-load-more :status="status" :content-text="contentText" color="#007aff" />
 	</view>
 </template>
 <script>
-import uniLoadMore from '@/components/uni-load-more/uni-load-more';
+	let scrollTimer = false
 	export default {
 		data() {
 			return {
+				// 切換菜單項
 				tabBars: [{
-					name: '中原獨家研究',
-					id: '1',
-					type: 'EX'
-				}, {
-					name: '工商鋪市場分析',
-					id: '2',
-					type: 'GSP'
-				}, {
-					name: '橫琴市況分析',
-					id: '3',
-					type: 'HQ'
-				}],
+						name: "中原獨家研究",
+						id: "1",
+						types: "EX",
+					},
+					{
+						name: "工商鋪市場分析",
+						id: "2",
+						types: "GSP",
+					},
+					{
+						name: "橫琴市況分析",
+						id: "3",
+						types: "HQ",
+					},
+				],
+				type: 'EX',
 				newsList: [],
-				scrollInfo: "",
-				tabCurrentIndex: 0,
+				tabCurrentIndex: 0, //当前tabindex
+				scrollLeft: 0, //顶部选项卡左滑距离,
 				page: 1,
-				enableScroll: true,
-				status: 'more',
-				statusTypes: [{
-					value: 'more',
-					text: '加载前'
-				}, {
-					value: 'loading',
-					text: '加载中'
-				}, {
-					value: 'noMore',
-					text: '没有更多'
-				}],
-				contentText: {
-					contentdown: '查看更多',
-					contentrefresh: '加载中',
-					contentnomore: '没有更多'
-				}
+				pagesize: 20,
+				loadStatus: 'loading',
+				isLoadMore: false
+			};
+		},
+		//页面初始加载
+		async onLoad() {
+			// this.$request(({
+			// 	method: 'POST',
+			// 	url: '/Api/Article/GetListWithNoStyle',
+			// 	data: {
+			// 		pageIndex: this.page,
+			// 		pageSize: this.pagesize,
+			// 		type: this.type
+			// 	}
+			// })).then((res) => {
+			// 	this.newsList = res.InnerList;
+			// })
+			this.$minApi.newsList({
+				pageIndex: this.page,
+				pageSize: this.pagesize,
+				type: this.type
+			}).then(res=>{
+				this.newsList = res.InnerList;
+			})
+
+		},
+		//下拉刷新
+		onPullDownRefresh() {
+			setTimeout(function() {
+				uni.stopPullDownRefresh();
+			}, 1000)
+		},
+		//上拉触底
+		onReachBottom() {
+			// console.log('上拉触底')
+			if (!this.isLoadMore) {
+				this.isLoadMore = true
+				this.page += 1
+				this.getDate()
+
 			}
 		},
-		components: {
-			//mixLoadMore
-			// mixPulldownRefresh
-		},
-		async onLoad() {
-
-			uni.request({
-				// url: 'http://10.68.2.9/CenMacauCMS2/Api/Article/GetListWithNoStyle',
-				url:'http://mo.centanet.com/CenMacauCMS/Api/Article/GetListWithNoStyle',
-				method: 'POST',
-				data: {
-					"pageIndex": 1,
-					"pageSize": 20,
-					"type": "EX"
-				},
-				success: (res) => {
-					this.newsList = res.data.InnerList;
+		// 格式化日期
+		filters: {
+			formatDate(value) {
+				// ios日期处理  formatDate
+				if (value != "" && value != null) {
+					var date = new Date(Date.parse(value.replace(/-/g, "/")));
+					
+					var month = date.getMonth() + 1;
+					var time = date.getFullYear() + "-" + month + "-" + date.getDate();
+					return time;
 				}
-			})
-		},
-		onPullDownRefresh() {
-			console.log('refresh');
-			setTimeout(function() {
-				//设置数据刷新
-				uni.request({
-					// url: 'http://10.68.2.9/CenMacauCMS2/Api/Article/GetListWithNoStyle',
-					url:'https://mo.centanet.com/CenMacauCMS/Api/Article/GetListWithNoStyle',
-					method: 'POST',
-					data: {
-						"pageIndex": 1,
-						"pageSize": 20,
-						"type": "EX"
-					},
-					success: (res) => {
-						this.newsList = res.data.InnerList;
-					}
-				})
-				uni.stopPullDownRefresh();
-			}, 1000);
-		},
-		onReachBottom() {
-			console.log('aaaaaa')
-			let _self=this;
-			this.status='loading',
-			uni.showNavigationBarLoading()
-			setTimeout(function() {
-				//设置数据刷新
-				uni.request({
-					// url: 'http://10.68.2.9/CenMacauCMS2/Api/Activities/GetList?',
-					url:'https://mo.centanet.com/CenMacauCMS/Api/Activities/GetList?',
-					data: {
-						"pageIndex": 1,
-						"pageSize": 20
-					},
-					success: (res) => {
-						this.newsList = res.data.InnerList;
-					}
-				})
-				_self.status='more',
-				uni.hideNavigationBarLoading()
-			}, 1000);
+
+			}
 		},
 		methods: {
-			async changeTab(e) { // tab 切換
-				let index;
-
-				var _this = this;
-				if (typeof e === 'object') {
-					let type;
-					var l_index = this.tabCurrentIndex = e.detail.current;
-					this.tabBars.forEach(function(item) {
-						if (l_index == item.index) {
-							type = item.type;
-							// console.log(type)
-						}
-					})
-					_this.changeCont(type)
-				} else {
-					let type
-					this.tabCurrentIndex = e;
-					this.tabBars.forEach(function(item) {
-						if (l_index == item.index) {
-							type = item.type;
-						}
-					})
-					_this.changeCont(type)
+			//tab切换
+			changeTab(e) {
+				let index = e.target.dataset.current || e.currentTarget.dataset.current;
+				//判斷是否為tab切換
+				//獲取 tabars 條目數
+				var length = this.tabBars.length - 1;
+				//下標越界處理
+				if (index > length) {
+					index = 0;
 				}
-
+				this.tabCurrentIndex = index;
 			},
-			async changeCont(type) {
-				uni.request({
-					// url: 'https://10.68.2.9/CenMacauCMS2/Api/Article/GetListWithNoStyle',
-					url:'https://mo.centanet.com/CenMacauCMS/Api/Article/GetListWithNoStyle',
-					method: 'POST',
-					data: {
-						"pageIndex": 1,
-						"pageSize": 20,
-						"type": type
-					},
-					success: (res) => {
-						this.newsList = res.data.InnerList;
-					}
+			//ONtab切换
+			onchangeTab(e) {
+				let index = e.target.current || e.detail.current;
+				var length = this.tabBars.length - 1;
+				if (index > length) {
+					index = 0;
+				}
+				this.tabCurrentIndex = index
+				this.type = this.tabBars[index].types;
+				this.switchTab();
+			},
+			// 加载更多数据
+			loadmore() {
+				if (!this.isLoadMore) {
+					this.isLoadMore = true
+					this.page += 1
+					this.getDate()
+
+				}
+			},
+			//切换tab
+			async switchTab() {
+				// this.$request({
+				// 	method: 'POST',
+				// 	url: '/Api/Article/GetListWithNoStyle',
+				// 	data: {
+				// 		pageIndex: this.page,
+				// 		pageSize: this.pagesize,
+				// 		type: this.type
+				// 	}
+				// }).then((res) => {
+				// 	this.newsList = res.data.InnerList;
+				// })
+				this.$minApi.newsList({
+					pageIndex: this.page,
+					pageSize: this.pagesize,
+					type: this.type
+				}).then(res=>{
+					this.newsList = res.data.InnerList;
 				})
 			},
-			async loadMore() {
-				
-				console.log('aaaaaa')
-				let _self=this;
-				this.status='loading',
-				uni.showNavigationBarLoading()
-				setTimeout(function() {
-					//设置数据刷新
-					uni.request({
-						// url: 'http://10.68.2.9/CenMacauCMS2/Api/Activities/GetList?',
-						url:'https://mo.centanet.com/CenMacauCMS/Api/Activities/GetList?',
-						data: {
-							"pageIndex": 1,
-							"pageSize": 20
-						},
-						success: (res) => {
-							this.newsList = res.data.InnerList;
-						}
-					})
-					_self.status='more',
-					uni.hideNavigationBarLoading()
-				}, 1000);
+			// 查看资讯详情
+			getNewsdetail(item) {
+				let obs = JSON.stringify(item);
+				console.log(obs);
+				uni.navigateTo({
+					url: '../../../pagesA/page/newsdetail/newsdetail?data=' + encodeURIComponent(obs),
+					animationType:'pop-out',
+					animationDuration:200
+				})
 			},
-			setEnableScroll(enable) {
-				if (this.enableScroll !== enable) {
-					this.enableScroll = enable;
-				}
+			//获取数据
+			getDate() {
+				// this.$request({
+				// 	method: 'POST',
+				// 	url: '/Api/Article/GetListWithNoStyle',
+				// 	data: {
+				// 		pageIndex: this.page,
+				// 		pageSize: this.pageSize,
+				// 		type: this.type
+				// 	}
+				// }).then((res) => {
+				// 	this.newsList = res.InnerList;
+				// 	if (res.InnerList.length < this.pagesize) {
+				// 		this.isLoadMore = true;
+				// 		this.loadStatus = 'nomore'
+				// 	} else {
+				// 		this.isLoadMore = true
+				// 		this.loadStatus = 'nomore'
+				// 	}
+				// })
+				this.$minApi.newsList({
+					pageIndex: this.page,
+					pageSize: this.pageSize,
+					type: this.type
+				}).then(res=>{
+					this.newsList = res.InnerList;
+					if (res.InnerList.length < this.pagesize) {
+						this.isLoadMore = true;
+						this.loadStatus = 'nomore'
+					} else {
+						this.isLoadMore = true
+						this.loadStatus = 'nomore'
+					}
+				})
 			}
 
 		}
@@ -203,86 +218,78 @@ import uniLoadMore from '@/components/uni-load-more/uni-load-more';
 	.content {
 		background-color: #f8f8f8;
 		height: 100%;
-		overflow: hidden;
 	}
-
 	page,
 	.tabs {
 		background-color: #f8f8f8;
 		height: 100%;
-		overflow: hidden;
-
 		.scroll-h {
-			position: relative;
 			width: 750rpx;
-			height: 70rpx;
+			height: 90rpx;
 			white-space: nowrap;
-			border-bottom: 2rpx solid #C0C0C0;
+			border-bottom: 2rpx solid #c0c0c0;
 
 			.tab-items {
 				width: 200rpx;
 				display: inline-block;
-				margin: 10rpx 20rpx;
-				font-size: 25rpx;
+				margin: 10rpx 25rpx;
+				font-size: 32rpx;
 				line-height: 60rpx;
 				text-align: center;
 				color: #808080;
 				position: relative;
-
 				&:after {
-					content: '';
+					content: "";
 					width: 0;
 					height: 0;
 					border-bottom: 4upx solid #aa0000;
 					position: absolute;
 					left: 50%;
-					bottom: 0;
+					bottom: -20rpx;
 					transform: translateX(-50%);
-					transition: .3s;
+					transition: 0.3s;
 				}
 			}
-
 			.current {
-				color: #aa0000;
-
+				height: 61rpx;
+				color: #ce1b1b;
 				&:after {
-					width: 50%;
+					width: 88rpx;
+					height: 4rpx;
 				}
 			}
 		}
-
-		.panel-content {
-			/* position: absolute; */
-			/* top: 10rpx; */
-		}
-
 		.cont_area {
-			/* position: relative; */
 			width: 725rpx;
-			height: 100%;
-			/* height: calc(100% - 75rpx); */
+			height: calc(100% - 70rpx);
+
 			margin: 0 auto;
 			box-sizing: border-box;
-			/* border: 1px solid #0000FF; */
-
 			.l_text {
 				display: flex;
 				flex-direction: column;
 				justify-content: center;
-				font-size: 25rpx;
-				height: 90rpx;
-				/* line-height: 90rpx; */
-				border-bottom: 1rpx solid #C0C0C0;
+				font-size: 32rpx;
+				color: #333333;
+				height: fit-content;
+				border-bottom: 1rpx solid #c0c0c0;
+				.l-text{
+					margin-top: 31rpx;
+					margin-left: 30rpx;
+					margin-right: 49rpx;
+					margin-bottom: 23rpx;
+					letter-spacing:3rpx;
+					color: #333333;
+				}
+				.l-modify{
+					margin-left: 30rpx;
+					margin-bottom: 33rpx;
+					color: #999999;
+					
+				}
 			}
-
-			scroll-view ::-webkit-scrollbar {
-
-				width: 0;
-
-				height: 0;
-
-				background-color: transparent;
-
+			.panel-scroll-box {
+				height: 100%;
 			}
 		}
 	}

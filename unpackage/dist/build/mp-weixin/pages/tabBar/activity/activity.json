@@ -1,7 +1,7 @@
 {
   "navigationBarTitleText": "活動報名",
-  "enablePullDownRefresh": false,
+  "enablePullDownRefresh": true,
   "usingComponents": {
-    "an-image": "/components/an-image/an-image"
+    "uni-load-more": "/components/uni-load-more/uni-load-more"
   }
 }
